@@ -11,13 +11,12 @@ if [ -z "$ANNOUNCE_IP" ]; then
     exit 1
 fi
 
-CERTS=/data/certs
-for f in ca.crt bumper.crt bumper.key; do
-    if [ ! -f "$CERTS/$f" ]; then
-        echo "ERROR: missing $CERTS/$f - see DOCS.md for how to create the certificates" >&2
-        exit 1
-    fi
-done
+CERTS=/share/bumper/certs
+if [ ! -f "$CERTS/bumper.crt" ] || [ ! -f "$CERTS/bumper.key" ] || [ ! -f "$CERTS/ca.crt" ]; then
+    echo "Generating certificates in $CERTS (first start)"
+    mkdir -p "$CERTS"
+    /bumper/create_certs/create_certs_linux -out "$CERTS"
+fi
 
 export BUMPER_LISTEN=0.0.0.0
 export BUMPER_ANNOUNCE_IP="$ANNOUNCE_IP"

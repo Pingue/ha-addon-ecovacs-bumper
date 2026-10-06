@@ -5,11 +5,12 @@ It includes its own MQTT broker, so it does **not** use the Mosquitto add-on.
 
 ## Setup
 
-1. Create the certificates (see `docs/Create_Certs.md` in the bumper repo). The add-on expects
-   `ca.crt`, `bumper.crt` and `bumper.key` in `/data/certs` inside the add-on's persistent data.
-   The robots must trust `ca.crt`.
-2. Set `announce_ip` to the IP address of your Home Assistant host.
-3. Start the add-on.
+1. On first start the add-on generates certificates in `/share/bumper/certs`
+   (`ca.crt`, `bumper.crt`, `bumper.key`). They are kept on restart.
+2. To use the app on a phone, install `ca.crt` on the device (it is reachable via the Samba share at `share/bumper/certs`).
+   Robots must trust the same CA. Do not delete the certs once devices are set up, or they will need to be re-trusted.
+3. Set `announce_ip` to the IP address of your Home Assistant host.
+4. Start the add-on.
 
 ## Ports
 

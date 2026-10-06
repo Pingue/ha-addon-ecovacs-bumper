@@ -5,6 +5,8 @@ description: Local replacement for the Ecovacs cloud, so robots and the app talk
 arch:
   - amd64
 startup: services
+map:
+  - share:rw
 boot: auto
 init: false
 ports:

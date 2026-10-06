@@ -15,7 +15,7 @@ CERTS=/share/bumper/certs
 if [ ! -f "$CERTS/bumper.crt" ] || [ ! -f "$CERTS/bumper.key" ] || [ ! -f "$CERTS/ca.crt" ]; then
     echo "Generating certificates in $CERTS (first start)"
     mkdir -p "$CERTS"
-    /bumper/create_certs/create_certs_linux -out "$CERTS"
+    /bumper/create_certs/create_certs -out "$CERTS" -inSAN /bumper/create_certs/Bumper_SAN.txt
 fi
 
 export BUMPER_LISTEN=0.0.0.0

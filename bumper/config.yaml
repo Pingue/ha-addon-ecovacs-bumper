@@ -1,0 +1,25 @@
+name: Bumper
+version: "0.1.0"
+slug: bumper
+description: Local replacement for the Ecovacs cloud, so robots and the app talk to Home Assistant
+arch:
+  - amd64
+startup: services
+boot: auto
+init: false
+ports:
+  443/tcp: 443
+  8007/tcp: 8007
+  8883/tcp: 8883
+  5223/tcp: 5223
+ports_description:
+  443/tcp: Config server (TLS) used by robots and the app
+  8007/tcp: Config server (plain) used by robots
+  8883/tcp: MQTT broker (TLS) used by robots and the app
+  5223/tcp: XMPP server used by robots
+options:
+  announce_ip: ""
+  debug: false
+schema:
+  announce_ip: match(^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$)
+  debug: bool

@@ -4,6 +4,7 @@ slug: bumper
 description: Local replacement for the Ecovacs cloud, so robots and the app talk to Home Assistant
 arch:
   - amd64
+  - aarch64
 startup: services
 map:
   - share:rw

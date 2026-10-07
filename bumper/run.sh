@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+ADDON_VERSION=$(sed -n 's/^version: *"\?\([^"]*\)"\?/\1/p' /addon-config.yaml)
+BUILD_DATE=$(cat /build-date 2>/dev/null || echo unknown)
+echo "Bumper add-on version $ADDON_VERSION (image built $BUILD_DATE)"
+
 OPTIONS=/data/options.json
 
 ANNOUNCE_IP=$(python3 -c "import json; print(json.load(open('$OPTIONS'))['announce_ip'])")

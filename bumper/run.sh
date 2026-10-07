@@ -29,5 +29,11 @@ export BUMPER_KEY="$CERTS/bumper.key"
 export BUMPER_DEBUG="$DEBUG"
 export LOG_TO_STDOUT=true
 
+# nginx routes host port 443 (mapped to internal 9443) between bumper's HTTPS
+# confserver and its MQTT broker by SNI, since newer robots/app connect to 443
+# expecting MQTT. See nginx.conf. Runs in the background; bumper is the
+# foreground process, so the container exits if bumper dies.
+nginx -g 'daemon off;' &
+
 cd /bumper
 exec python3 -m bumper

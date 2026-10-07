@@ -12,12 +12,12 @@ map:
 boot: auto
 init: false
 ports:
-  443/tcp: 443
+  9443/tcp: 443
   8007/tcp: 8007
   8883/tcp: 8883
   5223/tcp: 5223
 ports_description:
-  443/tcp: Config server (TLS) used by robots and the app
+  9443/tcp: Config server / MQTT on 443 (TLS), routed by SNI - used by robots and the app
   8007/tcp: Config server (plain) used by robots
   8883/tcp: MQTT broker (TLS) used by robots and the app
   5223/tcp: XMPP server used by robots
